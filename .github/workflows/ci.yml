@@ -9,9 +9,12 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +34,13 @@ jobs:
       - name: Run tests
         run: |
           pytest
+
+      - name: Build Docker image
+        run: |
+          docker build -t ci-cd-practice .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::600496202351:role/GitHubActions-ECR-Role
+          aws-region: us-east-1
