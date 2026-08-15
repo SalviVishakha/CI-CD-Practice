@@ -1,4 +1,4 @@
-name: Python CI - OIDC Test
+name: Python CI 
 
 on:
   push:
