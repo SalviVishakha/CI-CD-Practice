@@ -1,4 +1,4 @@
-name: Python CI   -AWS
+name: Python CI - AWS
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
           role-to-assume: arn:aws:iam::600496202351:role/CICDECRRole
           aws-region: us-east-1
 
-         - name: Login to Amazon ECR
+      - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Tag Docker image
