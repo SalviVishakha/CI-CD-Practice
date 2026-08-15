@@ -40,3 +40,14 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::600496202351:role/CICDECRRole
           aws-region: us-east-1
+
+         - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag Docker image
+        run: |
+          docker tag ci-cd-practice:latest 600496202351.dkr.ecr.us-east-1.amazonaws.com/ci-cd-practice:latest
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push 600496202351.dkr.ecr.us-east-1.amazonaws.com/ci-cd-practice:latest
